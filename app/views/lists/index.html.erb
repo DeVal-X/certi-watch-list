@@ -2,7 +2,9 @@
   <div class="lists-list">
     <div class="item-list">
       <% @lists.each do |list| %>
-        <%= list.name %>
+        <%= link_to list_path(list) do %>
+          <%= list.name %>
+        <% end %>
       <% end %>
     </div>
   </div>
