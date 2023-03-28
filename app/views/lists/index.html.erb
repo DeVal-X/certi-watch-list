@@ -1,12 +1,12 @@
 <div class="container">
   <div class="lists-list">
-    <div class="item-list">
-      <% @lists.each do |list| %>
+    <% @lists.each do |list| %>
+      <div class="item-list">
         <%= link_to list_path(list) do %>
-          <%= list.name %>
+          <h3><%= list.name %></h3>
         <% end %>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
   <div class="list-addition">
     <%= link_to "+ New List", new_list_path %>

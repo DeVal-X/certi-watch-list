@@ -2,17 +2,28 @@
   <h2><%= @list.name %></h2>
   <div class="movies-list">
     <% @list.bookmarks.each do |bookmark| %>
-      <div class="movie_item">
-          <h2><%= bookmark.movie.title %></h2>
+      <div class="movie_item mb-5">
+          <h3><%= bookmark.movie.title %></h3>
           <div>
             <%=bookmark.movie.overview %> <br/>
-            <%=link_to bookmark.movie.poster_url %>
+            <%=link_to bookmark.movie.poster_url %> <br/>
+            <span> Comment: <em><%=bookmark.comment %> </em> </span><br/>
+            <%= link_to "delete this bookmark", bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove #{bookmark.movie.title} from your #{@list.name} list"}, class: 'text-danger' %>
           </div>
       </div>
     <% end %>
   </div>
   <div>
     <%= link_to "<= Add a bookmark", new_list_bookmark_path(@list) %>
+  </div>
+  <div>
+    <%= link_to "delete this list",
+      list_path(@list),
+      data: { turbo_method: :delete,
+              turbo_confirm: "Are you sure you want to remove #{@list.name} from your lists ?"
+              },
+      class: 'text-danger'
+    %>
   </div>
   <div>
     <%= link_to "<= Back to lists", lists_path %>
